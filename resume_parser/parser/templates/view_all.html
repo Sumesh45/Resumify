@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous" />
+
+        <style type="text/css">
+            body {
+                background-image: url("{% static 'images/welcome_page..jpg' %}");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            /*navbar*/
+            .img-fluid {
+                height: 120px; /* Adjust height as needed */
+                width: auto; /* Maintain aspect ratio */
+            }
+
+            .navbar {
+                background-color: rgba(
+                    0,
+                    0,
+                    0,
+                    0
+                ); /* semi-transparent black background */
+                padding-top: 0px;
+            }
+
+            .navbar-brand,
+            .navbar-nav .nav-link {
+                color: white; /* white text color */
+                text-align: right;
+            }
+
+            .navbar-brand:hover,
+            .navbar-nav .nav-link:hover {
+                color: rgba(
+                    255,
+                    255,
+                    255,
+                    0.8
+                ); /* slightly transparent white on hover */
+            }
+
+            .nav-item,
+            .nav-link {
+                text-align: right;
+                padding-inline: 20px;
+                padding-bottom: 30px;
+            }
+
+            a {
+                justify-content: end;
+            }
+
+            #navbarSupportedContent {
+                margin-right: 100px;
+                padding-block: 20px;
+            }
+
+            /*login*/
+            .login-form {
+                height: 50vh; /* Full viewport height */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 20vh;
+                margin-top: 16vh;
+            }
+
+            .login-form .bg-primary {
+                border-radius: 8px; /* Rounded corners for the form */
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+            }
+
+            .login-form form {
+                max-width: 400px; /* Limit form width for better readability */
+                padding: 35px; /* Padding inside the form */
+            }
+
+            .login-form input[type="email"],
+            .login-form input[type="password"] {
+                border-radius: 4px; /* Rounded corners for input fields */
+                margin-bottom: 30px;
+            }
+
+            .login-form .btn {
+                font-weight: bold; /* Bold text for the login button */
+                background-color: #cd8b62;
+                font-size: 15px;
+                font-weight: bold;
+                width: 20rem;
+            }
+
+            .login-form h2 {
+                margin-top: 20px; /* Adjust this value as needed */
+                margin-bottom: 8vh; /* Adjust this value as needed */
+                text-align: center;
+            }
+
+            /* file upload */
+            .file_upload {
+                width: 100%;
+                height: 50%;
+                border: 1px dashed #ddd;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                position: relative;
+                text-align: center;
+                background: #f8f8f9;
+                color: #666;
+                overflow: hidden;
+            }
+
+            .file_upload i {
+                font-size: 6em;
+                color: #ccc;
+            }
+
+            .file_upload input[type="file"] {
+                cursor: pointer;
+                opacity: 0;
+                height: 100%;
+                width: 100%;
+                z-index: 10;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .item-wrapper input[type="file"] {
+                height: 43px;
+                line-height: 43px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                margin-bottom: 20px;
+                padding: 0 10px;
+            }
+
+            .upload-container {
+                max-width: 500px;
+                margin: 50px auto;
+                padding: 20px;
+                border-radius: 5px;
+                margin-top: 18vh;
+            }
+
+            .icon-center {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 20px; /* Optional spacing */
+            }
+
+            .btn {
+                background-color: #cd8b62;
+                width: 100%;
+            }
+
+            /* table styles */
+            table {
+                margin-bottom: 20px;
+                margin-left: 10%;
+            }
+
+            table,
+            th,
+            td {
+                border: 4px solid #533424;
+                background-color: #7a543f;
+            }
+
+            th {
+                color: rgb(255, 255, 255);
+                text-align: center;
+                padding: 10px 5px;
+            }
+
+            td {
+                padding: 25px;
+                text-align: center;
+                transition: background-color 0.3s ease;
+                color: rgb(255, 255, 255);
+            }
+
+            td button {
+                background-color: #c99677;
+                border: none;
+                border-radius: 6px;
+                width: 80px;
+                margin-left: 10px;
+            }
+
+            .delete-button {
+                margin-bottom: 20px;
+            }
+
+            .filter-sort {
+                text-align: right;
+                margin-right: 15%;
+            }
+
+            .filter-sort button {
+                background-color: #c99677;
+                border: none;
+                border-radius: 6px;
+                width: 80px;
+                margin-bottom: 8px;
+                margin-left: 10px;
+            }
+
+            .skills {
+                max-width: 300px;
+                overflow-x: scroll;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* Internet Explorer 10+ */
+            }
+
+            /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+            .skills::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+
+        <title>login</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <!--<a class="navbar-brand" href="log.jpg">Logo</a>-->
+            <a class="navbar-brand" href="#">
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    alt=""
+                    class="img-fluid" />
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'parser:index' %}">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'parser:about' %}">
+                            About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'parser:contact' %}">
+                            Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'parser:logout' %}">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <h1 class="text-center">Parsed Details</h1>
+        <table>
+            <tr>
+                <th>Sl No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile no</th>
+                <th>Years of Experience</th>
+                <th>Skills</th>
+                <th>Actions</th>
+            </tr>
+            {% for resume in resume_data %}
+            <tr>
+                <td>{{resume.pk}}</td>
+                <td>{{resume.name}}</td>
+                <td>{{resume.email}}</td>
+                <td>{{resume.number}}</td>
+                <td>{{resume.experience}}</td>
+                <td class="skills">{{resume.skills}}</td>
+                <td>
+                    <a href="{% url 'parser:delete' resume.pk %}">
+                        <button class="delete-button">Delete</button>
+                    </a>
+                    <a href="{{resume.file.url}}">
+                        <button>View</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    --></body>
+</html>

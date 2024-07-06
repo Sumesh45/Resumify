@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{% static 'styles/style.css' %}" />
+        <style type="text/css">
+            body {
+                background-image: url("{% static 'images/Register..jpg' %}");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: 'Montserrat', sans-serif;
+                list-style: none !important;
+            }
+            
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden; /* Prevents scrolling if background image overflows */
+            }
+            
+            .background-image-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1; /* Ensure the background image stays behind other content */
+            }
+            
+            .background-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Ensures the image covers the whole container */
+            }
+            
+            .navbar-brand img {
+                width: auto !important;
+                height: 50px;
+            }
+            .navbar-nav a {
+                font-size: 18px;
+                text-transform: uppercase;
+                font-weight: 500;
+                color: #000;
+            }
+            .resumify-text {
+                font-size: 20px;
+                text-transform: uppercase;
+                font-weight: 500;
+                color: #000;
+                font-weight: bold;
+            }
+            .hero-text {
+                width: 50%;
+                padding: 0px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .hero-text h2 {
+                font-size: 35px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: #131212;
+            }
+            
+            .hero-text p {
+                font-size: 13px;
+                margin-top: 10px;
+                margin-left: 30px;
+                letter-spacing: 2px;
+                color: #131212;
+                text-align: center;
+            }
+            
+            table {
+                margin-bottom: 20px;
+                margin-left: 10%;
+            
+            }
+            
+            table, th, td {
+                border: 4px solid #533424;
+                background-color:#7a543f;
+            }
+            
+            th {
+                color: rgb(255, 255, 255);
+                text-align: center;
+                padding: 10px 5px;
+            }
+            
+            td {
+                padding: 25px;
+                text-align: center;
+                transition: background-color 0.3s ease;
+                color: rgb(255, 255, 255);
+            }
+            td button{
+                background-color: #c99677;
+                border: none;
+                border-radius: 6px;
+                width: 80px;
+                margin-left: 10px;
+            }
+            .filter-sort {
+                text-align: right;
+                margin-right: 15%;
+            }
+            
+            .filter-sort button {
+                background-color: #c99677;
+                border: none;
+                border-radius: 6px;
+                width: 80px;
+                margin-bottom: 8px;
+                margin-left: 10px;
+            }
+        </style>
+
+        <title>login</title>
+    </head>
+    <body>
+    
+        <nav class="navbar navbar-expand-lg border-navbar">
+            <div class="container">
+              <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{% static "images/logo.png" %}" alt="Logo"/>
+                <span class="resumify-text">RESUMIFY</span>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav nav-underline">
+                  <li class="nav-item">
+                    <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="{% url "parser:index" %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="flex-sm-fill text-sm-center nav-link" href="{% url "parser:about" %}">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="flex-sm-fill text-sm-center nav-link" href="{% url "parser:contact" %}">Contact</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="flex-sm-fill text-sm-center nav-link" href="{% url "parser:auth" %}">Logout
+                      <i class="bx bx-log-out"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    
+          <div class="background-image-container">
+              <img src="{% static "images/Register..jpg" %}" alt="Background Image" class="background-image">
+          </div>
+          <div class="hero-text">
+            <h2 id="welcomeText" class="animate__animated animate__fadeInDown animate_delay-4s">About</h2>
+            <div class="content-section">
+                <p id="subText" class="animate__animated animate__fadeInDown animate_delay-2s">
+                    <strong>Resume Parsing Technology:</strong> Utilizes advanced algorithms to
+                    automatically extract and organize information from resumes,
+                    such as contact details, work experience, skills, and education.
+                </p>
+                <p id="subText" class="animate__animated animate__fadeInDown animate_delay-2s">
+                    <strong>Efficiency in Recruitment:</strong> Helps recruiters and HR professionals
+                    save time by automating the initial screening process of resumes,
+                    enabling them to quickly identify suitable candidates.
+                </p>
+                <p id="subText" class="animate__animated animate__fadeInDown animate_delay-2s">
+                    <strong>Integration Capabilities:</strong> Often integrates with applicant tracking
+                    systems (ATS) or HR software to seamlessly import parsed resume data,
+                    enhancing overall recruitment workflows.
+                </p>
+                <p id="subText" class="animate__animated animate__fadeInDown animate_delay-2s">
+                    <strong>Customization and Accuracy:</strong> Provides tools to customize parsing rules
+                    to match specific job requirements or industry standards, ensuring accurate
+                    extraction of relevant information.
+                </p>
+                <p id="subText" class="animate__animated animate__fadeInDown animate_delay-2s">
+                    Overall, we aim to simplify the hiring process, improve recruitment efficiency,
+                    and help businesses make informed decisions based on comprehensive resume data.
+                </p>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>
